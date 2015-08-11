@@ -289,10 +289,10 @@ class WechatBasic(object):
         self.grant_token()
 
         response_json = self._get(
-            url="https://api.weixin.qq.com/cgi-bin/ticket/getticket",
+            url="https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket",
             params={
                 "access_token": self.access_token,
-                "type": "jsapi",
+                # "type": "jsapi",
             }
         )
         if override:
