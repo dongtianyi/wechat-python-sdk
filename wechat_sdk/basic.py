@@ -264,11 +264,11 @@ class WechatBasic(object):
 
         response_json = self._get(
             # url="https://api.weixin.qq.com/cgi-bin/token",
-            url="https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=id&corpsecret=secrect",
+            url="https://qyapi.weixin.qq.com/cgi-bin/gettoken",
             params={
                 # "grant_type": "client_credential",
-                "appid": self.__appid,
-                "secret": self.__appsecret,
+                "corpid": self.__appid,
+                "corpsecret": self.__appsecret,
             }
         )
         if override:
