@@ -255,7 +255,7 @@ class WechatBasic(object):
     def grant_token(self, override=True):
         """
         获取 Access Token
-        详情请参考 http://mp.weixin.qq.com/wiki/11/0e4b294685f817b95cbed85ba5e82b8f.html
+        详情请参考 http://qydev.weixin.qq.com/wiki/index.php?title=%E4%B8%BB%E5%8A%A8%E8%B0%83%E7%94%A8
         :param override: 是否在获取的同时覆盖已有 access_token (默认为True)
         :return: 返回的 JSON 数据包
         :raise HTTPError: 微信api http 请求失败
@@ -263,9 +263,10 @@ class WechatBasic(object):
         self._check_appid_appsecret()
 
         response_json = self._get(
-            url="https://api.weixin.qq.com/cgi-bin/token",
+            # url="https://api.weixin.qq.com/cgi-bin/token",
+            url="https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=id&corpsecret=secrect",
             params={
-                "grant_type": "client_credential",
+                # "grant_type": "client_credential",
                 "appid": self.__appid,
                 "secret": self.__appsecret,
             }
