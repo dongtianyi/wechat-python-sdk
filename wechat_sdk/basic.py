@@ -72,7 +72,19 @@ class WechatBasic(object):
 
         self._check_appid_appsecret()
 
-        response_json = self._get(
+        # response_json = self._get(
+        #     url="https://open.weixin.qq.com/connect/oauth2/authorize",
+        #     params={
+        #         "appid": self.__appid,
+        #         "redirect_uri": six.moves.urllib.parse.quote(redirect_uri),
+        #         "response_type": "code",
+        #         "scope": "snsapi_base",
+        #         "state": "NDKJ&^%&*JNL#wechat_redirect",
+        #     }
+        # )
+
+        r = requests.request(
+            method="get",
             url="https://open.weixin.qq.com/connect/oauth2/authorize",
             params={
                 "appid": self.__appid,
@@ -85,7 +97,7 @@ class WechatBasic(object):
 
         
 
-        return response_json
+        return r
 
 
     def check_signature(self, signature, timestamp, nonce):
