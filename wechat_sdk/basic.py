@@ -77,8 +77,8 @@ class WechatBasic(object):
             params={
                 "appid": self.__appid,
                 "redirect_uri": six.moves.urllib.parse.quote(redirect_uri),
-                "response_type": code,
-                "scope": snsapi_base,
+                "response_type": "code",
+                "scope": "snsapi_base",
                 "state": "NDKJ&^%&*JNL#wechat_redirect",
             }
         )
