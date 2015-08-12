@@ -6,6 +6,7 @@ import time
 import json
 import cgi
 from StringIO import StringIO
+import six
 
 from xml.dom import minidom
 
@@ -53,6 +54,39 @@ class WechatBasic(object):
         self.__jsapi_ticket_expires_at = jsapi_ticket_expires_at
         self.__is_parse = False
         self.__message = None
+
+    def get_oauth_url(self, redirect_uri):
+        
+        """
+        example:
+        https://open.weixin.qq.com/connect/oauth2/authorize?appid=CORPID&redirect_uri=REDIRECT_URI&
+            response_type=code&scope=SCOPE&state=STATE#wechat_redirect
+        :param url https://open.weixin.qq.com/connect/oauth2/authorize
+        :param appid=CORPID 企业的CorpID
+        :param redirect_uri=REDIRECT_URI  授权后重定向的回调链接地址，请使用urlencode对链接进行处理
+        :param response_type=code 返回类型，此时固定为：code
+        :param scope=snsapi_base 应用授权作用域，此时固定为：snsapi_base
+        :param state=STATE
+        :param #wechat_redirect
+        """
+
+        self._check_appid_appsecret()
+
+        response_json = self._get(
+            url="https://open.weixin.qq.com/connect/oauth2/authorize",
+            params={
+                "appid": self.__appid,
+                "redirect_uri": six.moves.urllib.parse.quote(redirect_uri),
+                "response_type": code,
+                "scope": snsapi_base,
+                "state": "NDKJ&^%&*JNL#wechat_redirect",
+            }
+        )
+
+        
+
+        return response_json
+
 
     def check_signature(self, signature, timestamp, nonce):
         """
